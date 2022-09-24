@@ -44,6 +44,13 @@ use({
     })
 
     vim.api.nvim_set_hl(0, 'NvimTreeIndentMarker', { fg = '#30323E' })
+
+    vim.api.nvim_set_hl(0, 'StatusLineNonText', {
+      fg = vim.api.nvim_get_hl_by_name('NonText', true).foreground,
+      bg = vim.api.nvim_get_hl_by_name('StatusLine', true).background,
+    })
+
+    vim.api.nvim_set_hl(0, 'IndentBlanklineChar', { fg = '#2F313C' })
   end,
 })
 
@@ -161,6 +168,41 @@ use({
   config = function()
     require('user/plugins/nvim-tree')
   end,
+})
+
+-- A Status line.
+use({
+  'nvim-lualine/lualine.nvim',
+  requires = 'kyazdani42/nvim-web-devicons',
+  config = function()
+    require('user/plugins/lualine')
+  end,
+})
+
+-- Display buffers as tabs.
+use({
+  'akinsho/bufferline.nvim',
+  requires = 'kyazdani42/nvim-web-devicons',
+  after = 'onedark.nvim',
+  config = function()
+    require('user/plugins/bufferline')
+  end,
+})
+
+-- Display indentation lines.
+use({
+  'lukas-reineke/indent-blankline.nvim',
+  config = function()
+    require('user/plugins/indent-blankline')
+  end,
+})
+
+-- Add a dashboard.
+use({
+  'glepnir/dashboard-nvim',
+  config = function()
+    require('user/plugins/dashboard-nvim')
+  end
 })
 
 -- Automatically set up your configuration after cloning packer.nvim
